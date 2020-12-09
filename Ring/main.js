@@ -15,21 +15,21 @@ const lights = [];
 lights[ 0 ] = new THREE.PointLight( 0x0000ff, 1, 0 );
 lights[ 1 ] = new THREE.PointLight( 0x00ff00, 1, 0 );
 lights[ 2 ] = new THREE.PointLight( 0xff0000, 1, 0 );
-lights[ 3 ] = new THREE.PointLight( 0x00ffff, 1, 0 );
 
 lights[ 0 ].position.set( 100, 100, 100 );
 lights[ 1 ].position.set( -100, 100, 100 );
 lights[ 2 ].position.set( 100, -100, 100 );
-lights[ 3 ].position.set( -100, -100, 100 );
 
 scene.add( lights[ 0 ] );
 scene.add( lights[ 1 ] );
 scene.add( lights[ 2 ] );
 
+renderer.setClearColor(0xdddddd);
+
 // variabel
 var innerRadius		= 3;
 var outerRadius     = 5;
-var thetaSegments	= 8;
+var thetaSegments	= 32;
 var phiSegments     = 8;
 var thetaStart      = 0;
 var thetaLength     = 6.3;
@@ -111,14 +111,14 @@ function properties(event) {
             geometry = new THREE.RingGeometry(innerRadius, outerRadius, thetaSegments, --phiSegments, thetaStart, thetaLength);
         
         else if (event.keyCode == 102) // f +thetaStart
-            geometry = new THREE.RingGeometry(innerRadius, outerRadius, thetaSegments, phiSegments, ++thetaStart, thetaLength);
+            geometry = new THREE.RingGeometry(innerRadius, outerRadius, thetaSegments, phiSegments, thetaStart -= 0.05, thetaLength);
         else if (event.keyCode == 103) // g -thetaStart
-            geometry = new THREE.RingGeometry(innerRadius, outerRadius, thetaSegments, phiSegments, --thetaStart, thetaLength);
+            geometry = new THREE.RingGeometry(innerRadius, outerRadius, thetaSegments, phiSegments, thetaStart -= 0.05, thetaLength);
     
         else if (event.keyCode == 104) // h +thetaLength
-            geometry = new THREE.RingGeometry(innerRadius, outerRadius, thetaSegments, phiSegments, thetaStart, ++thetaLength);
+            geometry = new THREE.RingGeometry(innerRadius, outerRadius, thetaSegments, phiSegments, thetaStart, thetaLength += 0.05);
         else if (event.keyCode == 106) // j -thetaLength
-            geometry = new THREE.RingGeometry(innerRadius, outerRadius, thetaSegments, phiSegments, thetaStart, --thetaLength);
+            geometry = new THREE.RingGeometry(innerRadius, outerRadius, thetaSegments, phiSegments, thetaStart, thetaLength -= 0.05);
         
         geo.geometry = geometry;
         

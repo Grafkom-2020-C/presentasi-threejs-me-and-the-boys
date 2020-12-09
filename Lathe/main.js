@@ -5,7 +5,7 @@ document.body.appendChild( renderer.domElement );
 
 // camera
 camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
-camera.position.z = 20;
+camera.position.z = 50;
 
 // scene
 const scene = new THREE.Scene();
@@ -15,16 +15,16 @@ const lights = [];
 lights[ 0 ] = new THREE.PointLight( 0x0000ff, 1, 0 );
 lights[ 1 ] = new THREE.PointLight( 0x00ff00, 1, 0 );
 lights[ 2 ] = new THREE.PointLight( 0xff0000, 1, 0 );
-lights[ 3 ] = new THREE.PointLight( 0x00ffff, 1, 0 );
 
 lights[ 0 ].position.set( 100, 100, 100 );
 lights[ 1 ].position.set( -100, 100, 100 );
 lights[ 2 ].position.set( 100, -100, 100 );
-lights[ 3 ].position.set( -100, -100, 100 );
 
 scene.add( lights[ 0 ] );
 scene.add( lights[ 1 ] );
 scene.add( lights[ 2 ] );
+
+renderer.setClearColor(0xdddddd);
 
 // variabel
 var points = [];
@@ -99,14 +99,14 @@ function properties(event) {
             geometry = new THREE.LatheGeometry(points, --segments, phiStart, phiLength);
 
         else if (event.keyCode == 99) // c +phiStart
-            geometry = new THREE.LatheGeometry(points,segments, ++phiStart, phiLength);
+            geometry = new THREE.LatheGeometry(points,segments, phiStart += 0.05, phiLength);
         else if (event.keyCode == 118) // v -phiStart
-            geometry = new THREE.LatheGeometry(points, segments, --phiStart, phiLength);
+            geometry = new THREE.LatheGeometry(points, segments, phiStart -= 0.05, phiLength);
 
         else if (event.keyCode == 121) // y +phiLength
-            geometry = new THREE.LatheGeometry(points, segments, ++phiStart, ++phiLength);
+            geometry = new THREE.LatheGeometry(points, segments, phiStart, phiLength += 0.05);
         else if (event.keyCode == 117) // u -phiLength
-            geometry = new THREE.LatheGeometry(points, segments, --phiStart, --phiLength);
+            geometry = new THREE.LatheGeometry(points, segments, phiStart, phiLength -= 0.05);
     
         geo.geometry = geometry;
         

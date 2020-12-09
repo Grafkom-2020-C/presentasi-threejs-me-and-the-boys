@@ -15,16 +15,16 @@ const lights = [];
 lights[ 0 ] = new THREE.PointLight( 0x0000ff, 1, 0 );
 lights[ 1 ] = new THREE.PointLight( 0x00ff00, 1, 0 );
 lights[ 2 ] = new THREE.PointLight( 0xff0000, 1, 0 );
-lights[ 3 ] = new THREE.PointLight( 0x00ffff, 1, 0 );
 
 lights[ 0 ].position.set( 100, 100, 100 );
 lights[ 1 ].position.set( -100, 100, 100 );
 lights[ 2 ].position.set( 100, -100, 100 );
-lights[ 3 ].position.set( -100, -100, 100 );
 
 scene.add( lights[ 0 ] );
 scene.add( lights[ 1 ] );
 scene.add( lights[ 2 ] );
+
+renderer.setClearColor(0xdddddd);
 
 // variabel
 var length          = 1;
@@ -114,7 +114,7 @@ function properties(event) {
                 scene.remove( geo );
         }
 
-        else if (event.keyCode == 120)     //x openended
+        else if (event.keyCode == 120)     //x bevelE
             extrudeSettings.bevelEnabled = !extrudeSettings.bevelEnabled;
 
         else if (event.keyCode == 119) // w +steps

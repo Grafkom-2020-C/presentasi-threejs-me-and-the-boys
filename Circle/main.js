@@ -15,16 +15,16 @@ const lights = [];
 lights[ 0 ] = new THREE.PointLight( 0x0000ff, 1, 0 );
 lights[ 1 ] = new THREE.PointLight( 0x00ff00, 1, 0 );
 lights[ 2 ] = new THREE.PointLight( 0xff0000, 1, 0 );
-lights[ 3 ] = new THREE.PointLight( 0x00ffff, 1, 0 );
 
 lights[ 0 ].position.set( 100, 100, 100 );
 lights[ 1 ].position.set( -100, 100, 100 );
 lights[ 2 ].position.set( 100, -100, 100 );
-lights[ 3 ].position.set( -100, -100, 100 );
 
 scene.add( lights[ 0 ] );
 scene.add( lights[ 1 ] );
 scene.add( lights[ 2 ] );
+
+renderer.setClearColor(0xdddddd);
 
 // variabel
 var radius 			= 5;
@@ -100,18 +100,18 @@ function properties(event) {
             if(segment >3){
                 segment--;
                 geometry = new THREE.CircleGeometry( radius, segment, thetaStart, thetaLength );
-            }
+            }else;
     
         else if (event.keyCode == 115) // s +thetaStart
             geometry = new THREE.CircleGeometry( radius, segment, thetaStart += 0.05, thetaLength );
         else if (event.keyCode == 100) // d -thetaStart
-        geometry = new THREE.CircleGeometry( radius, segment, thetaStart -= 0.05, thetaLength );
+            geometry = new THREE.CircleGeometry( radius, segment, thetaStart -= 0.05, thetaLength );
     
 
         else if (event.keyCode == 102) // f +thetaLength
-        geometry = new THREE.CircleGeometry( radius, segment, thetaStart, thetaLength += 0.05 );
+            geometry = new THREE.CircleGeometry( radius, segment, thetaStart, thetaLength += 0.05 );
         else if (event.keyCode == 103) // g -thetaLength
-        geometry = new THREE.CircleGeometry( radius, segment, thetaStart, thetaLength -= 0.05 );
+            geometry = new THREE.CircleGeometry( radius, segment, thetaStart, thetaLength -= 0.05 );
     
         geo.geometry = geometry;
         

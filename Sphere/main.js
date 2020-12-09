@@ -15,21 +15,21 @@ const lights = [];
 lights[ 0 ] = new THREE.PointLight( 0x0000ff, 1, 0 );
 lights[ 1 ] = new THREE.PointLight( 0x00ff00, 1, 0 );
 lights[ 2 ] = new THREE.PointLight( 0xff0000, 1, 0 );
-lights[ 3 ] = new THREE.PointLight( 0x00ffff, 1, 0 );
 
 lights[ 0 ].position.set( 100, 100, 100 );
 lights[ 1 ].position.set( -100, 100, 100 );
 lights[ 2 ].position.set( 100, -100, 100 );
-lights[ 3 ].position.set( -100, -100, 100 );
 
 scene.add( lights[ 0 ] );
 scene.add( lights[ 1 ] );
 scene.add( lights[ 2 ] );
 
+renderer.setClearColor(0xdddddd);
+
 // variabel
 var radius		    = 3;
-var widthSegments   = 8;
-var heightSegments	= 6;
+var widthSegments   = 20;
+var heightSegments	= 20;
 var phiStart    	= 0;
 var phiLength       = 6.3;
 var thetaStart      = 0;
@@ -107,24 +107,24 @@ function properties(event) {
             geometry = new THREE.SphereGeometry(radius , widthSegments, --heightSegments, phiStart, phiLength, thetaStart, thetaLength);
 
         else if (event.keyCode == 121) // y +phiStart
-            geometry = new THREE.SphereGeometry(radius , widthSegments, heightSegments, ++phiStart, phiLength, thetaStart, thetaLength);
+            geometry = new THREE.SphereGeometry(radius , widthSegments, heightSegments, phiStart += 0.05, phiLength, thetaStart, thetaLength);
         else if (event.keyCode == 117) // u -phiStart
-            geometry = new THREE.SphereGeometry(radius , widthSegments, heightSegments, --phiStart, phiLength, thetaStart, thetaLength);
+            geometry = new THREE.SphereGeometry(radius , widthSegments, heightSegments, phiStart += 0.05, phiLength, thetaStart, thetaLength);
 
         else if (event.keyCode == 115) // s +phiLength
-            geometry = new THREE.SphereGeometry(radius , widthSegments, heightSegments, phiStart, ++phiLength, thetaStart, thetaLength);
+            geometry = new THREE.SphereGeometry(radius , widthSegments, heightSegments, phiStart, phiLength += 0.05, thetaStart, thetaLength);
         else if (event.keyCode == 100) // d -phiLength
-            geometry = new THREE.SphereGeometry(radius , widthSegments, heightSegments, phiStart, --phiLength, thetaStart, thetaLength);
+            geometry = new THREE.SphereGeometry(radius , widthSegments, heightSegments, phiStart, phiLength -= 0.05, thetaStart, thetaLength);
 
         else if (event.keyCode == 102) // f +thetaStart
-            geometry = new THREE.SphereGeometry(radius , widthSegments, heightSegments, phiStart, phiLength, ++thetaStart, thetaLength);
+            geometry = new THREE.SphereGeometry(radius , widthSegments, heightSegments, phiStart, phiLength, thetaStart+= 0.05, thetaLength);
         else if (event.keyCode == 103) // g -thetaStart
-            geometry = new THREE.SphereGeometry(radius , widthSegments, heightSegments, phiStart, phiLength, --thetaStart, thetaLength);
+            geometry = new THREE.SphereGeometry(radius , widthSegments, heightSegments, phiStart, phiLength, thetaStart-= 0.05, thetaLength);
 
         else if (event.keyCode == 104) // h +thetaLength
-            geometry = new THREE.SphereGeometry(radius , widthSegments, heightSegments, phiStart, phiLength, thetaStart, --thetaLength);
+            geometry = new THREE.SphereGeometry(radius , widthSegments, heightSegments, phiStart, phiLength, thetaStart, thetaLength+= 0.05);
         else if (event.keyCode == 106) // j -thetaLength
-            geometry = new THREE.SphereGeometry(radius , widthSegments, heightSegments, phiStart, phiLength, thetaStart, --thetaLength);
+            geometry = new THREE.SphereGeometry(radius , widthSegments, heightSegments, phiStart, phiLength, thetaStart, thetaLength-= 0.05);
 
         geo.geometry = geometry;
         
