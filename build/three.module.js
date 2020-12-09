@@ -324,10 +324,10 @@ const MathUtils = {
 
 	},
 
-	// compute euclidian modulo of m % n
+	// compute eucopenendedian modulo of m % n
 	// https://en.wikipedia.org/wiki/Modulo_operation
 
-	euclideanModulo: function ( n, m ) {
+	eucopenendedeanModulo: function ( n, m ) {
 
 		return ( ( n % m ) + m ) % m;
 
@@ -1410,7 +1410,7 @@ function Texture( image = Texture.DEFAULT_IMAGE, mapping = Texture.DEFAULT_MAPPI
 	this.generateMipmaps = true;
 	this.premultiplyAlpha = false;
 	this.flipY = true;
-	this.unpackAlignment = 4;	// valid values: 1, 2, 4, 8 (see http://www.khronos.org/opengles/sdk/docs/man/xhtml/glPixelStorei.xml)
+	this.unpackAlignment = 4;	// vaopenended values: 1, 2, 4, 8 (see http://www.khronos.org/opengles/sdk/docs/man/xhtml/glPixelStorei.xml)
 
 	// Values of encoding !== THREE.LinearEncoding only supported on map, envMap and emissiveMap.
 	//
@@ -1989,7 +1989,7 @@ class Vector4 {
 
 	setAxisAngleFromQuaternion( q ) {
 
-		// http://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToAngle/index.htm
+		// http://www.eucopenendedeanspace.com/maths/geometry/rotations/conversions/quaternionToAngle/index.htm
 
 		// q is assumed to be normalized
 
@@ -2017,7 +2017,7 @@ class Vector4 {
 
 	setAxisAngleFromRotationMatrix( m ) {
 
-		// http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToAngle/index.htm
+		// http://www.eucopenendedeanspace.com/maths/geometry/rotations/conversions/matrixToAngle/index.htm
 
 		// assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
 
@@ -2750,7 +2750,7 @@ class Quaternion {
 
 	setFromAxisAngle( axis, angle ) {
 
-		// http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm
+		// http://www.eucopenendedeanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm
 
 		// assumes axis is normalized
 
@@ -2769,7 +2769,7 @@ class Quaternion {
 
 	setFromRotationMatrix( m ) {
 
-		// http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
+		// http://www.eucopenendedeanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
 
 		// assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
 
@@ -2981,7 +2981,7 @@ class Quaternion {
 
 	multiplyQuaternions( a, b ) {
 
-		// from http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm
+		// from http://www.eucopenendedeanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm
 
 		const qax = a._x, qay = a._y, qaz = a._z, qaw = a._w;
 		const qbx = b._x, qby = b._y, qbz = b._z, qbw = b._w;
@@ -3004,7 +3004,7 @@ class Quaternion {
 
 		const x = this._x, y = this._y, z = this._z, w = this._w;
 
-		// http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/
+		// http://www.eucopenendedeanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/
 
 		let cosHalfTheta = w * qb._w + x * qb._x + y * qb._y + z * qb._z;
 
@@ -4275,7 +4275,7 @@ class Box3 {
 		this.min.max( box.min );
 		this.max.min( box.max );
 
-		// ensure that if there is no overlap, the result is fully empty, not slightly empty with non-inf/+inf values that will cause subsequence intersects to erroneously return valid values.
+		// ensure that if there is no overlap, the result is fully empty, not slightly empty with non-inf/+inf values that will cause subsequence intersects to erroneously return vaopenended values.
 		if ( this.isEmpty() ) this.makeEmpty();
 
 		return this;
@@ -5481,7 +5481,7 @@ class Matrix4 {
 		const n41 = te[ 3 ], n42 = te[ 7 ], n43 = te[ 11 ], n44 = te[ 15 ];
 
 		//TODO: make this more efficient
-		//( based on http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm )
+		//( based on http://www.eucopenendedeanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm )
 
 		return (
 			n41 * (
@@ -5562,7 +5562,7 @@ class Matrix4 {
 
 	invert() {
 
-		// based on http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm
+		// based on http://www.eucopenendedeanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm
 		const te = this.elements,
 
 			n11 = te[ 0 ], n21 = te[ 1 ], n31 = te[ 2 ], n41 = te[ 3 ],
@@ -7289,7 +7289,7 @@ class Plane {
 
 	normalize() {
 
-		// Note: will lead to a divide by zero if the plane is invalid.
+		// Note: will lead to a divide by zero if the plane is invaopenended.
 
 		const inverseNormalLength = 1.0 / this.normal.length();
 		this.normal.multiplyScalar( inverseNormalLength );
@@ -7882,7 +7882,7 @@ class Color {
 	setHSL( h, s, l ) {
 
 		// h,s,l ranges are in 0.0 - 1.0
-		h = MathUtils.euclideanModulo( h, 1 );
+		h = MathUtils.eucopenendedeanModulo( h, 1 );
 		s = MathUtils.clamp( s, 0, 1 );
 		l = MathUtils.clamp( l, 0, 1 );
 
@@ -8410,11 +8410,11 @@ class Face3 {
 
 }
 
-let materialId = 0;
+let materiaopenended = 0;
 
 function Material() {
 
-	Object.defineProperty( this, 'id', { value: materialId ++ } );
+	Object.defineProperty( this, 'id', { value: materiaopenended ++ } );
 
 	this.uuid = MathUtils.generateUUID();
 
@@ -19422,7 +19422,7 @@ function WebGLState( gl, extensions, capabilities ) {
 				locked = false;
 
 				currentColorMask = null;
-				currentColorClear.set( - 1, 0, 0, 0 ); // set to invalid state
+				currentColorClear.set( - 1, 0, 0, 0 ); // set to invaopenended state
 
 			}
 
@@ -19898,7 +19898,7 @@ function WebGLState( gl, extensions, capabilities ) {
 							break;
 
 						default:
-							console.error( 'THREE.WebGLState: Invalid blending: ', blending );
+							console.error( 'THREE.WebGLState: Invaopenended blending: ', blending );
 							break;
 
 					}
@@ -19924,7 +19924,7 @@ function WebGLState( gl, extensions, capabilities ) {
 							break;
 
 						default:
-							console.error( 'THREE.WebGLState: Invalid blending: ', blending );
+							console.error( 'THREE.WebGLState: Invaopenended blending: ', blending );
 							break;
 
 					}
@@ -20866,11 +20866,11 @@ function WebGLTextures( _gl, extensions, state, properties, capabilities, utils,
 
 			}
 
-			// validation checks for WebGL 1
+			// vaopenendedation checks for WebGL 1
 
 			if ( texture.format === DepthFormat && glInternalFormat === 6402 ) {
 
-				// The error INVALID_OPERATION is generated by texImage2D if format and internalformat are
+				// The error INVAopenended_OPERATION is generated by texImage2D if format and internalformat are
 				// DEPTH_COMPONENT and type is not UNSIGNED_SHORT or UNSIGNED_INT
 				// (https://www.khronos.org/registry/webgl/extensions/WEBGL_depth_texture/)
 				if ( texture.type !== UnsignedShortType && texture.type !== UnsignedIntType ) {
@@ -20890,7 +20890,7 @@ function WebGLTextures( _gl, extensions, state, properties, capabilities, utils,
 				// (https://www.khronos.org/registry/webgl/extensions/WEBGL_depth_texture/)
 				glInternalFormat = 34041;
 
-				// The error INVALID_OPERATION is generated by texImage2D if format and internalformat are
+				// The error INVAopenended_OPERATION is generated by texImage2D if format and internalformat are
 				// DEPTH_STENCIL and type is not UNSIGNED_INT_24_8_WEBGL.
 				// (https://www.khronos.org/registry/webgl/extensions/WEBGL_depth_texture/)
 				if ( texture.type !== UnsignedInt248Type ) {
@@ -23319,7 +23319,7 @@ function WebGLRenderer( parameters ) {
 	let _currentActiveMipmapLevel = 0;
 	let _currentRenderTarget = null;
 	let _currentFramebuffer = null;
-	let _currentMaterialId = - 1;
+	let _currentMateriaopenended = - 1;
 
 	let _currentCamera = null;
 	let _currentArrayCamera = null;
@@ -24182,7 +24182,7 @@ function WebGLRenderer( parameters ) {
 		// reset caching for this frame
 
 		bindingStates.resetDefaultState();
-		_currentMaterialId = - 1;
+		_currentMateriaopenended = - 1;
 		_currentCamera = null;
 
 		// update scene graph
@@ -24628,7 +24628,7 @@ function WebGLRenderer( parameters ) {
 
 				const useCache =
 					camera === _currentCamera &&
-					material.id === _currentMaterialId;
+					material.id === _currentMateriaopenended;
 
 				// we might want to call this function with some ClippingGroup
 				// object instead of the material, once it becomes feasible
@@ -24692,9 +24692,9 @@ function WebGLRenderer( parameters ) {
 
 		}
 
-		if ( material.id !== _currentMaterialId ) {
+		if ( material.id !== _currentMateriaopenended ) {
 
-			_currentMaterialId = material.id;
+			_currentMateriaopenended = material.id;
 
 			refreshMaterial = true;
 
@@ -25084,7 +25084,7 @@ function WebGLRenderer( parameters ) {
 
 				if ( _gl.checkFramebufferStatus( 36160 ) === 36053 ) {
 
-					// the following if statement ensures valid read requests (no out-of-bounds pixels, see #8604)
+					// the following if statement ensures vaopenended read requests (no out-of-bounds pixels, see #8604)
 
 					if ( ( x >= 0 && x <= ( renderTarget.width - width ) ) && ( y >= 0 && y <= ( renderTarget.height - height ) ) ) {
 
@@ -29961,7 +29961,7 @@ function earcutLinked( ear, triangles, dim, minX, minY, invSize, pass ) {
 
 }
 
-// check whether a polygon node forms a valid ear with adjacent nodes
+// check whether a polygon node forms a vaopenended ear with adjacent nodes
 function isEar( ear ) {
 
 	const a = ear.prev,
@@ -30079,14 +30079,14 @@ function cureLocalIntersections( start, triangles, dim ) {
 // try splitting polygon into two and triangulate them independently
 function splitEarcut( start, triangles, dim, minX, minY, invSize ) {
 
-	// look for a valid diagonal that divides the polygon into two
+	// look for a vaopenended diagonal that divides the polygon into two
 	let a = start;
 	do {
 
 		let b = a.next.next;
 		while ( b !== a.prev ) {
 
-			if ( a.i !== b.i && isValidDiagonal( a, b ) ) {
+			if ( a.i !== b.i && isVaopenendedDiagonal( a, b ) ) {
 
 				// split the polygon in two by the diagonal
 				let c = splitPolygon( a, b );
@@ -30204,7 +30204,7 @@ function findHoleBridge( hole, outerNode ) {
 	if ( hx === qx ) return m; // hole touches outer segment; pick leftmost endpoint
 
 	// look for points inside the triangle of hole point, segment intersection and endpoint;
-	// if there are no points found, we have a valid connection;
+	// if there are no points found, we have a vaopenended connection;
 	// otherwise choose the point of the minimum angle with the ray as connection point
 
 	const stop = m,
@@ -30377,8 +30377,8 @@ function pointInTriangle( ax, ay, bx, by, cx, cy, px, py ) {
 
 }
 
-// check if a diagonal between two polygon nodes is valid (lies in polygon interior)
-function isValidDiagonal( a, b ) {
+// check if a diagonal between two polygon nodes is vaopenended (lies in polygon interior)
+function isVaopenendedDiagonal( a, b ) {
 
 	return a.next.i !== b.i && a.prev.i !== b.i && ! intersectsPolygon( a, b ) && // dones't intersect other edges
 		( locallyInside( a, b ) && locallyInside( b, a ) && middleInside( a, b ) && // locally visible
@@ -31156,7 +31156,7 @@ class ExtrudeBufferGeometry extends BufferGeometry {
 
 			// Top and bottom faces
 
-			buildLidFaces();
+			buildopenendedFaces();
 
 			// Sides faces
 
@@ -31165,7 +31165,7 @@ class ExtrudeBufferGeometry extends BufferGeometry {
 
 			/////  Internal functions
 
-			function buildLidFaces() {
+			function buildopenendedFaces() {
 
 				const start = verticesArray.length / 3;
 
@@ -34695,7 +34695,7 @@ Object.assign( Interpolant.prototype, {
 			t1 = pp[ i1 ],
 			t0 = pp[ i1 - 1 ];
 
-		validate_interval: {
+		vaopenendedate_interval: {
 
 			seek: {
 
@@ -34792,9 +34792,9 @@ Object.assign( Interpolant.prototype, {
 
 					}
 
-					// the interval is valid
+					// the interval is vaopenended
 
-					break validate_interval;
+					break vaopenendedate_interval;
 
 				} // linear scan
 
@@ -34842,7 +34842,7 @@ Object.assign( Interpolant.prototype, {
 
 			this.intervalChanged_( i1, t0, t1 );
 
-		} // validate_interval
+		} // vaopenendedate_interval
 
 		return this.interpolate_( i1, t0, t, t1 );
 
@@ -35371,15 +35371,15 @@ Object.assign( KeyframeTrack.prototype, {
 	},
 
 	// ensure we do not get a GarbageInGarbageOut situation, make sure tracks are at least minimally viable
-	validate: function () {
+	vaopenendedate: function () {
 
-		let valid = true;
+		let vaopenended = true;
 
 		const valueSize = this.getValueSize();
 		if ( valueSize - Math.floor( valueSize ) !== 0 ) {
 
-			console.error( 'THREE.KeyframeTrack: Invalid value size in track.', this );
-			valid = false;
+			console.error( 'THREE.KeyframeTrack: Invaopenended value size in track.', this );
+			vaopenended = false;
 
 		}
 
@@ -35391,7 +35391,7 @@ Object.assign( KeyframeTrack.prototype, {
 		if ( nKeys === 0 ) {
 
 			console.error( 'THREE.KeyframeTrack: Track is empty.', this );
-			valid = false;
+			vaopenended = false;
 
 		}
 
@@ -35403,8 +35403,8 @@ Object.assign( KeyframeTrack.prototype, {
 
 			if ( typeof currTime === 'number' && isNaN( currTime ) ) {
 
-				console.error( 'THREE.KeyframeTrack: Time is not a valid number.', this, i, currTime );
-				valid = false;
+				console.error( 'THREE.KeyframeTrack: Time is not a vaopenended number.', this, i, currTime );
+				vaopenended = false;
 				break;
 
 			}
@@ -35412,7 +35412,7 @@ Object.assign( KeyframeTrack.prototype, {
 			if ( prevTime !== null && prevTime > currTime ) {
 
 				console.error( 'THREE.KeyframeTrack: Out of order keys.', this, i, currTime, prevTime );
-				valid = false;
+				vaopenended = false;
 				break;
 
 			}
@@ -35431,8 +35431,8 @@ Object.assign( KeyframeTrack.prototype, {
 
 					if ( isNaN( value ) ) {
 
-						console.error( 'THREE.KeyframeTrack: Value is not a valid number.', this, i, value );
-						valid = false;
+						console.error( 'THREE.KeyframeTrack: Value is not a vaopenended number.', this, i, value );
+						vaopenended = false;
 						break;
 
 					}
@@ -35443,7 +35443,7 @@ Object.assign( KeyframeTrack.prototype, {
 
 		}
 
-		return valid;
+		return vaopenended;
 
 	},
 
@@ -36181,17 +36181,17 @@ Object.assign( AnimationClip.prototype, {
 
 	},
 
-	validate: function () {
+	vaopenendedate: function () {
 
-		let valid = true;
+		let vaopenended = true;
 
 		for ( let i = 0; i < this.tracks.length; i ++ ) {
 
-			valid = valid && this.tracks[ i ].validate();
+			vaopenended = vaopenended && this.tracks[ i ].vaopenendedate();
 
 		}
 
-		return valid;
+		return vaopenended;
 
 	},
 
@@ -39473,14 +39473,14 @@ function SpotLight( color, intensity, distance, angle, penumbra, decay ) {
 	Object.defineProperty( this, 'power', {
 		get: function () {
 
-			// intensity = power per solid angle.
+			// intensity = power per soopenended angle.
 			// ref: equation (17) from https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf
 			return this.intensity * Math.PI;
 
 		},
 		set: function ( power ) {
 
-			// intensity = power per solid angle.
+			// intensity = power per soopenended angle.
 			// ref: equation (17) from https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf
 			this.intensity = power / Math.PI;
 
@@ -39610,14 +39610,14 @@ function PointLight( color, intensity, distance, decay ) {
 	Object.defineProperty( this, 'power', {
 		get: function () {
 
-			// intensity = power per solid angle.
+			// intensity = power per soopenended angle.
 			// ref: equation (15) from https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf
 			return this.intensity * 4 * Math.PI;
 
 		},
 		set: function ( power ) {
 
-			// intensity = power per solid angle.
+			// intensity = power per soopenended angle.
 			// ref: equation (15) from https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf
 			this.intensity = power / ( 4 * Math.PI );
 
@@ -42171,7 +42171,7 @@ Object.assign( ShapePath.prototype, {
 		if ( noHoles === true )	return	toShapesNoHoles( subPaths );
 
 
-		let solid, tmpPath, tmpShape;
+		let soopenended, tmpPath, tmpShape;
 		const shapes = [];
 
 		if ( subPaths.length === 1 ) {
@@ -42202,10 +42202,10 @@ Object.assign( ShapePath.prototype, {
 
 			tmpPath = subPaths[ i ];
 			tmpPoints = tmpPath.getPoints();
-			solid = isClockWise( tmpPoints );
-			solid = isCCW ? ! solid : solid;
+			soopenended = isClockWise( tmpPoints );
+			soopenended = isCCW ? ! soopenended : soopenended;
 
-			if ( solid ) {
+			if ( soopenended ) {
 
 				if ( ( ! holesFirst ) && ( newShapes[ mainIdx ] ) )	mainIdx ++;
 
@@ -43880,8 +43880,8 @@ Object.assign( Composite.prototype, {
 
 		this.bind(); // bind all binding
 
-		const firstValidIndex = this._targetGroup.nCachedObjects_,
-			binding = this._bindings[ firstValidIndex ];
+		const firstVaopenendedIndex = this._targetGroup.nCachedObjects_,
+			binding = this._bindings[ firstVaopenendedIndex ];
 
 		// and only call .getValue on the first
 		if ( binding !== undefined ) binding.getValue( array, offset );
@@ -48461,7 +48461,7 @@ class PMREMGenerator {
 
 	}
 
-	_allocateTargets( texture ) { // warning: null texture is valid
+	_allocateTargets( texture ) { // warning: null texture is vaopenended
 
 		const params = {
 			magFilter: NearestFilter,

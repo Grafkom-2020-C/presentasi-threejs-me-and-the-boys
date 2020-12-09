@@ -2,24 +2,43 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Three.js Lathe Geometry</title>
-		<link rel="stylesheet" type="text/css" href="../../files/main.css">
+		<title>Three.js Box Geometry</title>
+		<link rel="stylesheet" type="text/css" href="../Css/main.css">
 	</head>
 	<body>
-		<a id='newWindow' target='_blank'></a>
-		
-		<script type="module" src="main.js"></script>
-		
+		<script src="../build/three.js"></script>
+		<script src="./main.js"></script>
+
+		<div class="instruction">
+			<p>space : toogle rotation </p>
+			<p>Arrow : geometry rotation </p>
+			<p><> : zoom in/out </p>
+			<p>z : toogle geometry </p>
+			<p>q : toogle edge/wireframe </p>
+			<p>a : toogle thresholdAngle  </p>
+			<p>w : + width </p>
+			<p>e : - width </p>
+			<p>r : + height </p>
+			<p>t : - height </p>
+			<p>y : + depth </p>
+			<p>u : - depth </p>
+			<p>s : + widthSegment </p>
+			<p>d : - widthSegment </p>
+			<p>f : + heightSegment </p>
+			<p>g : - heightSegment </p>
+			<p>h : + depthSegment </p>
+			<p>j : - depthSegment </p>
+		</div>
+
 		<div class="tab">
-			<a class="tablinks" href="../Box">Box</a>
+			<a class="active" href="../Box">Box</a>
 			<a class="tablinks" href="../Circle" >Circle</a>
 			<a class="tablinks" href="../Cone" >Cone</a>
 			<a class="tablinks" href="../Cylinder" >Cylinder</a>
 			<a class="tablinks" href="../Dodecahedron" >Dodecahedron</a>
-			<a class="tablinks" href="../Edges" >Edges</a>
 			<a class="tablinks" href="../Extrude" >Extrude</a>
 			<a class="tablinks" href="../Icosahedron" >Icosahedron</a>
-			<a class="active" href="../Lathe" >Lathe</a>
+			<a class="tablinks" href="../Lathe" >Lathe</a>
 			<a class="tablinks" href="../Octahedron" >Octahedron</a>
 			<a class="tablinks" href="../Parametric" >Parametric</a>
 			<a class="tablinks" href="../Plane" >Plane</a>
@@ -32,9 +51,6 @@
 			<a class="tablinks" href="../Torus" >Torus</a>
 			<a class="tablinks" href="../Torusknot" >Torusknot</a>
 			<a class="tablinks" href="../Tube" >Tube</a>
-			<a class="tablinks" href="../Wireframe" >Wireframe</a>
 		</div>
-
-		
 	</body>
 </html>

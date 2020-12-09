@@ -346,9 +346,9 @@
 		clamp: function clamp(value, min, max) {
 			return Math.max(min, Math.min(max, value));
 		},
-		// compute euclidian modulo of m % n
+		// compute eucopenendedian modulo of m % n
 		// https://en.wikipedia.org/wiki/Modulo_operation
-		euclideanModulo: function euclideanModulo(n, m) {
+		eucopenendedeanModulo: function eucopenendedeanModulo(n, m) {
 			return (n % m + m) % m;
 		},
 		// Linear mapping from range <a1, a2> to range <b1, b2>
@@ -1242,7 +1242,7 @@
 		this.generateMipmaps = true;
 		this.premultiplyAlpha = false;
 		this.flipY = true;
-		this.unpackAlignment = 4; // valid values: 1, 2, 4, 8 (see http://www.khronos.org/opengles/sdk/docs/man/xhtml/glPixelStorei.xml)
+		this.unpackAlignment = 4; // vaopenended values: 1, 2, 4, 8 (see http://www.khronos.org/opengles/sdk/docs/man/xhtml/glPixelStorei.xml)
 		// Values of encoding !== THREE.LinearEncoding only supported on map, envMap and emissiveMap.
 		//
 		// Also changing the encoding after already used by a Material will not automatically make the Material
@@ -1662,7 +1662,7 @@
 		};
 
 		_proto.setAxisAngleFromQuaternion = function setAxisAngleFromQuaternion(q) {
-			// http://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToAngle/index.htm
+			// http://www.eucopenendedeanspace.com/maths/geometry/rotations/conversions/quaternionToAngle/index.htm
 			// q is assumed to be normalized
 			this.w = 2 * Math.acos(q.w);
 			var s = Math.sqrt(1 - q.w * q.w);
@@ -1681,7 +1681,7 @@
 		};
 
 		_proto.setAxisAngleFromRotationMatrix = function setAxisAngleFromRotationMatrix(m) {
-			// http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToAngle/index.htm
+			// http://www.eucopenendedeanspace.com/maths/geometry/rotations/conversions/matrixToAngle/index.htm
 			// assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
 			var angle, x, y, z; // variables for result
 
@@ -2229,7 +2229,7 @@
 		};
 
 		_proto.setFromAxisAngle = function setFromAxisAngle(axis, angle) {
-			// http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm
+			// http://www.eucopenendedeanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm
 			// assumes axis is normalized
 			var halfAngle = angle / 2,
 					s = Math.sin(halfAngle);
@@ -2244,7 +2244,7 @@
 		};
 
 		_proto.setFromRotationMatrix = function setFromRotationMatrix(m) {
-			// http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
+			// http://www.eucopenendedeanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
 			// assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
 			var te = m.elements,
 					m11 = te[0],
@@ -2400,7 +2400,7 @@
 		};
 
 		_proto.multiplyQuaternions = function multiplyQuaternions(a, b) {
-			// from http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm
+			// from http://www.eucopenendedeanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm
 			var qax = a._x,
 					qay = a._y,
 					qaz = a._z,
@@ -2425,7 +2425,7 @@
 			var x = this._x,
 					y = this._y,
 					z = this._z,
-					w = this._w; // http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/
+					w = this._w; // http://www.eucopenendedeanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/
 
 			var cosHalfTheta = w * qb._w + x * qb._x + y * qb._y + z * qb._z;
 
@@ -3438,7 +3438,7 @@
 
 		_proto.intersect = function intersect(box) {
 			this.min.max(box.min);
-			this.max.min(box.max); // ensure that if there is no overlap, the result is fully empty, not slightly empty with non-inf/+inf values that will cause subsequence intersects to erroneously return valid values.
+			this.max.min(box.max); // ensure that if there is no overlap, the result is fully empty, not slightly empty with non-inf/+inf values that will cause subsequence intersects to erroneously return vaopenended values.
 
 			if (this.isEmpty()) this.makeEmpty();
 			return this;
@@ -4432,7 +4432,7 @@
 					n42 = te[7],
 					n43 = te[11],
 					n44 = te[15]; //TODO: make this more efficient
-			//( based on http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm )
+			//( based on http://www.eucopenendedeanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm )
 
 			return n41 * (+n14 * n23 * n32 - n13 * n24 * n32 - n14 * n22 * n33 + n12 * n24 * n33 + n13 * n22 * n34 - n12 * n23 * n34) + n42 * (+n11 * n23 * n34 - n11 * n24 * n33 + n14 * n21 * n33 - n13 * n21 * n34 + n13 * n24 * n31 - n14 * n23 * n31) + n43 * (+n11 * n24 * n32 - n11 * n22 * n34 - n14 * n21 * n32 + n12 * n21 * n34 + n14 * n22 * n31 - n12 * n24 * n31) + n44 * (-n13 * n22 * n31 - n11 * n23 * n32 + n11 * n22 * n33 + n13 * n21 * n32 - n12 * n21 * n33 + n12 * n23 * n31);
 		};
@@ -4478,7 +4478,7 @@
 		};
 
 		_proto.invert = function invert() {
-			// based on http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm
+			// based on http://www.eucopenendedeanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm
 			var te = this.elements,
 					n11 = te[0],
 					n21 = te[1],
@@ -5774,7 +5774,7 @@
 		};
 
 		_proto.normalize = function normalize() {
-			// Note: will lead to a divide by zero if the plane is invalid.
+			// Note: will lead to a divide by zero if the plane is invaopenended.
 			var inverseNormalLength = 1.0 / this.normal.length();
 			this.normal.multiplyScalar(inverseNormalLength);
 			this.constant *= inverseNormalLength;
@@ -6387,7 +6387,7 @@
 
 		_proto.setHSL = function setHSL(h, s, l) {
 			// h,s,l ranges are in 0.0 - 1.0
-			h = MathUtils.euclideanModulo(h, 1);
+			h = MathUtils.eucopenendedeanModulo(h, 1);
 			s = MathUtils.clamp(s, 0, 1);
 			l = MathUtils.clamp(l, 0, 1);
 
@@ -6797,11 +6797,11 @@
 		return Face3;
 	}();
 
-	var materialId = 0;
+	var materiaopenended = 0;
 
 	function Material() {
 		Object.defineProperty(this, 'id', {
-			value: materialId++
+			value: materiaopenended++
 		});
 		this.uuid = MathUtils.generateUUID();
 		this.name = '';
@@ -14867,7 +14867,7 @@
 				reset: function reset() {
 					locked = false;
 					currentColorMask = null;
-					currentColorClear.set(-1, 0, 0, 0); // set to invalid state
+					currentColorClear.set(-1, 0, 0, 0); // set to invaopenended state
 				}
 			};
 		}
@@ -15169,7 +15169,7 @@
 								break;
 
 							default:
-								console.error('THREE.WebGLState: Invalid blending: ', blending);
+								console.error('THREE.WebGLState: Invaopenended blending: ', blending);
 								break;
 						}
 					} else {
@@ -15191,7 +15191,7 @@
 								break;
 
 							default:
-								console.error('THREE.WebGLState: Invalid blending: ', blending);
+								console.error('THREE.WebGLState: Invaopenended blending: ', blending);
 								break;
 						}
 					}
@@ -15817,11 +15817,11 @@
 					if (texture.type === FloatType) {
 						console.error('WebGLRenderer: Floating point depth texture requires WebGL2.');
 					}
-				} // validation checks for WebGL 1
+				} // vaopenendedation checks for WebGL 1
 
 
 				if (texture.format === DepthFormat && glInternalFormat === 6402) {
-					// The error INVALID_OPERATION is generated by texImage2D if format and internalformat are
+					// The error INVAopenended_OPERATION is generated by texImage2D if format and internalformat are
 					// DEPTH_COMPONENT and type is not UNSIGNED_SHORT or UNSIGNED_INT
 					// (https://www.khronos.org/registry/webgl/extensions/WEBGL_depth_texture/)
 					if (texture.type !== UnsignedShortType && texture.type !== UnsignedIntType) {
@@ -15834,7 +15834,7 @@
 				if (texture.format === DepthStencilFormat && glInternalFormat === 6402) {
 					// Depth stencil textures need the DEPTH_STENCIL internal format
 					// (https://www.khronos.org/registry/webgl/extensions/WEBGL_depth_texture/)
-					glInternalFormat = 34041; // The error INVALID_OPERATION is generated by texImage2D if format and internalformat are
+					glInternalFormat = 34041; // The error INVAopenended_OPERATION is generated by texImage2D if format and internalformat are
 					// DEPTH_STENCIL and type is not UNSIGNED_INT_24_8_WEBGL.
 					// (https://www.khronos.org/registry/webgl/extensions/WEBGL_depth_texture/)
 
@@ -17524,7 +17524,7 @@
 		var _currentRenderTarget = null;
 		var _currentFramebuffer = null;
 
-		var _currentMaterialId = -1;
+		var _currentMateriaopenended = -1;
 
 		var _currentCamera = null;
 		var _currentArrayCamera = null;
@@ -18133,7 +18133,7 @@
 			if (_isContextLost === true) return; // reset caching for this frame
 
 			bindingStates.resetDefaultState();
-			_currentMaterialId = -1;
+			_currentMateriaopenended = -1;
 			_currentCamera = null; // update scene graph
 
 			if (scene.autoUpdate === true) scene.updateMatrixWorld(); // update camera matrices and frustum
@@ -18424,7 +18424,7 @@
 
 			if (_clippingEnabled === true) {
 				if (_localClippingEnabled === true || camera !== _currentCamera) {
-					var useCache = camera === _currentCamera && material.id === _currentMaterialId; // we might want to call this function with some ClippingGroup
+					var useCache = camera === _currentCamera && material.id === _currentMateriaopenended; // we might want to call this function with some ClippingGroup
 					// object instead of the material, once it becomes feasible
 					// (#8465, #8379)
 
@@ -18464,8 +18464,8 @@
 				refreshLights = true;
 			}
 
-			if (material.id !== _currentMaterialId) {
-				_currentMaterialId = material.id;
+			if (material.id !== _currentMateriaopenended) {
+				_currentMateriaopenended = material.id;
 				refreshMaterial = true;
 			}
 
@@ -18743,7 +18743,7 @@
 					}
 
 					if (_gl.checkFramebufferStatus(36160) === 36053) {
-						// the following if statement ensures valid read requests (no out-of-bounds pixels, see #8604)
+						// the following if statement ensures vaopenended read requests (no out-of-bounds pixels, see #8604)
 						if (x >= 0 && x <= renderTarget.width - width && y >= 0 && y <= renderTarget.height - height) {
 							_gl.readPixels(x, y, width, height, utils.convert(textureFormat), utils.convert(textureType), buffer);
 						}
@@ -22287,7 +22287,7 @@
 				break;
 			}
 		}
-	} // check whether a polygon node forms a valid ear with adjacent nodes
+	} // check whether a polygon node forms a vaopenended ear with adjacent nodes
 
 
 	function isEar(ear) {
@@ -22372,14 +22372,14 @@
 
 
 	function splitEarcut(start, triangles, dim, minX, minY, invSize) {
-		// look for a valid diagonal that divides the polygon into two
+		// look for a vaopenended diagonal that divides the polygon into two
 		var a = start;
 
 		do {
 			var b = a.next.next;
 
 			while (b !== a.prev) {
-				if (a.i !== b.i && isValidDiagonal(a, b)) {
+				if (a.i !== b.i && isVaopenendedDiagonal(a, b)) {
 					// split the polygon in two by the diagonal
 					var c = splitPolygon(a, b); // filter colinear points around the cuts
 
@@ -22468,7 +22468,7 @@
 		if (!m) return null;
 		if (hx === qx) return m; // hole touches outer segment; pick leftmost endpoint
 		// look for points inside the triangle of hole point, segment intersection and endpoint;
-		// if there are no points found, we have a valid connection;
+		// if there are no points found, we have a vaopenended connection;
 		// otherwise choose the point of the minimum angle with the ray as connection point
 
 		var stop = m,
@@ -22605,10 +22605,10 @@
 
 	function pointInTriangle(ax, ay, bx, by, cx, cy, px, py) {
 		return (cx - px) * (ay - py) - (ax - px) * (cy - py) >= 0 && (ax - px) * (by - py) - (bx - px) * (ay - py) >= 0 && (bx - px) * (cy - py) - (cx - px) * (by - py) >= 0;
-	} // check if a diagonal between two polygon nodes is valid (lies in polygon interior)
+	} // check if a diagonal between two polygon nodes is vaopenended (lies in polygon interior)
 
 
-	function isValidDiagonal(a, b) {
+	function isVaopenendedDiagonal(a, b) {
 		return a.next.i !== b.i && a.prev.i !== b.i && !intersectsPolygon(a, b) && ( // dones't intersect other edges
 		locallyInside(a, b) && locallyInside(b, a) && middleInside(a, b) && ( // locally visible
 		area(a.prev, a, b.prev) || area(a, b.prev, b)) || // does not create opposite-facing sectors
@@ -23135,11 +23135,11 @@
 				// Top and bottom faces
 
 
-				buildLidFaces(); // Sides faces
+				buildopenendedFaces(); // Sides faces
 
 				buildSideFaces(); /////	Internal functions
 
-				function buildLidFaces() {
+				function buildopenendedFaces() {
 					var start = verticesArray.length / 3;
 
 					if (bevelEnabled) {
@@ -26043,7 +26043,7 @@
 					t1 = pp[i1],
 					t0 = pp[i1 - 1];
 
-			validate_interval: {
+			vaopenendedate_interval: {
 				seek: {
 					var right;
 
@@ -26113,10 +26113,10 @@
 							right = i1;
 							i1 = 0;
 							break linear_scan;
-						} // the interval is valid
+						} // the interval is vaopenended
 
 
-						break validate_interval;
+						break vaopenendedate_interval;
 					} // linear scan
 					// binary search
 
@@ -26149,7 +26149,7 @@
 
 				this._cachedIndex = i1;
 				this.intervalChanged_(i1, t0, t1);
-			} // validate_interval
+			} // vaopenendedate_interval
 
 
 			return this.interpolate_(i1, t0, t, t1);
@@ -26503,13 +26503,13 @@
 			return this;
 		},
 		// ensure we do not get a GarbageInGarbageOut situation, make sure tracks are at least minimally viable
-		validate: function validate() {
-			var valid = true;
+		vaopenendedate: function vaopenendedate() {
+			var vaopenended = true;
 			var valueSize = this.getValueSize();
 
 			if (valueSize - Math.floor(valueSize) !== 0) {
-				console.error('THREE.KeyframeTrack: Invalid value size in track.', this);
-				valid = false;
+				console.error('THREE.KeyframeTrack: Invaopenended value size in track.', this);
+				vaopenended = false;
 			}
 
 			var times = this.times,
@@ -26518,7 +26518,7 @@
 
 			if (nKeys === 0) {
 				console.error('THREE.KeyframeTrack: Track is empty.', this);
-				valid = false;
+				vaopenended = false;
 			}
 
 			var prevTime = null;
@@ -26527,14 +26527,14 @@
 				var currTime = times[i];
 
 				if (typeof currTime === 'number' && isNaN(currTime)) {
-					console.error('THREE.KeyframeTrack: Time is not a valid number.', this, i, currTime);
-					valid = false;
+					console.error('THREE.KeyframeTrack: Time is not a vaopenended number.', this, i, currTime);
+					vaopenended = false;
 					break;
 				}
 
 				if (prevTime !== null && prevTime > currTime) {
 					console.error('THREE.KeyframeTrack: Out of order keys.', this, i, currTime, prevTime);
-					valid = false;
+					vaopenended = false;
 					break;
 				}
 
@@ -26547,15 +26547,15 @@
 						var value = values[_i];
 
 						if (isNaN(value)) {
-							console.error('THREE.KeyframeTrack: Value is not a valid number.', this, _i, value);
-							valid = false;
+							console.error('THREE.KeyframeTrack: Value is not a vaopenended number.', this, _i, value);
+							vaopenended = false;
 							break;
 						}
 					}
 				}
 			}
 
-			return valid;
+			return vaopenended;
 		},
 		// removes equivalent sequential keys as common in morph target sequences
 		// (0,0,0,0,1,1,1,0,0,0,0,0,0,0) --> (0,0,1,1,0,0)
@@ -27040,14 +27040,14 @@
 
 			return this;
 		},
-		validate: function validate() {
-			var valid = true;
+		vaopenendedate: function vaopenendedate() {
+			var vaopenended = true;
 
 			for (var i = 0; i < this.tracks.length; i++) {
-				valid = valid && this.tracks[i].validate();
+				vaopenended = vaopenended && this.tracks[i].vaopenendedate();
 			}
 
-			return valid;
+			return vaopenended;
 		},
 		optimize: function optimize() {
 			for (var i = 0; i < this.tracks.length; i++) {
@@ -29343,12 +29343,12 @@
 		this.target = new Object3D();
 		Object.defineProperty(this, 'power', {
 			get: function get() {
-				// intensity = power per solid angle.
+				// intensity = power per soopenended angle.
 				// ref: equation (17) from https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf
 				return this.intensity * Math.PI;
 			},
 			set: function set(power) {
-				// intensity = power per solid angle.
+				// intensity = power per soopenended angle.
 				// ref: equation (17) from https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf
 				this.intensity = power / Math.PI;
 			}
@@ -29435,12 +29435,12 @@
 		this.type = 'PointLight';
 		Object.defineProperty(this, 'power', {
 			get: function get() {
-				// intensity = power per solid angle.
+				// intensity = power per soopenended angle.
 				// ref: equation (15) from https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf
 				return this.intensity * 4 * Math.PI;
 			},
 			set: function set(power) {
-				// intensity = power per solid angle.
+				// intensity = power per soopenended angle.
 				// ref: equation (15) from https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf
 				this.intensity = power / (4 * Math.PI);
 			}
@@ -31141,7 +31141,7 @@
 			var subPaths = this.subPaths;
 			if (subPaths.length === 0) return [];
 			if (noHoles === true) return toShapesNoHoles(subPaths);
-			var solid, tmpPath, tmpShape;
+			var soopenended, tmpPath, tmpShape;
 			var shapes = [];
 
 			if (subPaths.length === 1) {
@@ -31166,10 +31166,10 @@
 			for (var i = 0, l = subPaths.length; i < l; i++) {
 				tmpPath = subPaths[i];
 				tmpPoints = tmpPath.getPoints();
-				solid = isClockWise(tmpPoints);
-				solid = isCCW ? !solid : solid;
+				soopenended = isClockWise(tmpPoints);
+				soopenended = isCCW ? !soopenended : soopenended;
 
-				if (solid) {
+				if (soopenended) {
 					if (!holesFirst && newShapes[mainIdx]) mainIdx++;
 					newShapes[mainIdx] = {
 						s: new Shape(),
@@ -32378,8 +32378,8 @@
 		getValue: function getValue(array, offset) {
 			this.bind(); // bind all binding
 
-			var firstValidIndex = this._targetGroup.nCachedObjects_,
-					binding = this._bindings[firstValidIndex]; // and only call .getValue on the first
+			var firstVaopenendedIndex = this._targetGroup.nCachedObjects_,
+					binding = this._bindings[firstVaopenendedIndex]; // and only call .getValue on the first
 
 			if (binding !== undefined) binding.getValue(array, offset);
 		},
@@ -35898,7 +35898,7 @@
 		};
 
 		_proto._allocateTargets = function _allocateTargets(texture) {
-			// warning: null texture is valid
+			// warning: null texture is vaopenended
 			var params = {
 				magFilter: NearestFilter,
 				minFilter: NearestFilter,

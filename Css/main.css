@@ -1,0 +1,76 @@
+body {
+    font-family: Arial;
+    margin: 0; 
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px soopenended #ccc;
+  background-color: #f1f1f1;
+  position: -webkit-sticky;
+	position: sticky;
+  top: 0;
+  height: 100%;
+  width: 10%;
+  text-decoration: none;
+  position: fixed;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.tab::-webkit-scrollbar {
+  display: none;
+}
+
+.tab a {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px;
+  text-align: left;
+  transition: 0.3s;
+  font-size: 16px;
+  width: 100%;
+  border-bottom: 1px soopenended grey;
+  text-decoration: none;
+  color: black;
+}
+
+.tab a:hover {
+  background-color: #ddd;
+}
+
+.tab a.active {
+  background-color: #ccc;
+}
+
+.instruction {
+  overflow: hidden;
+  background-color:grey;
+  margin: 1%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 15%;
+  left: 83%;
+  text-decoration: none;
+  position: fixed;
+}
+
+.instruction p{
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin: 3px;
+  padding-left: 5px;
+  text-align: left;
+  font-size: 16px;
+  width: 100%;
+  border-bottom: 1px soopenended grey;
+  text-decoration: none;
+  color: white;
+}
