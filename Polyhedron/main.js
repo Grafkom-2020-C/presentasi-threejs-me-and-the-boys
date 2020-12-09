@@ -25,19 +25,31 @@ lights[ 3 ].position.set( -100, -100, 100 );
 scene.add( lights[ 0 ] );
 scene.add( lights[ 1 ] );
 scene.add( lights[ 2 ] );
-scene.add( lights[ 3 ] );
 
 // variabel
-var radius		= 3;
-var detail      = 3;
+var radius  		= 3;
+var detail          = 3;
 var freeze          = false;
 var visible         = true;
 var strip           = 0;
 var nStrip          = 1;
 var tempx, tempy;
+ 
+const verticesOfCube = [
+    -1,-1,-1,    1,-1,-1,    1, 1,-1,    -1, 1,-1,
+    -1,-1, 1,    1,-1, 1,    1, 1, 1,    -1, 1, 1,
+];
 
-//Bentuk Geometry
-geometry = new THREE.DodecahedronGeometry(radius, detail);
+const indicesOfFaces = [
+    2,1,0,    0,3,2,
+    0,4,7,    7,3,0,
+    0,1,5,    5,4,0,
+    1,2,6,    6,5,1,
+    2,3,7,    7,6,2,
+    4,5,6,    6,7,4
+];
+
+const geometry = new THREE.PolyhedronGeometry( verticesOfCube, indicesOfFaces, radius, detail );
 
 //Material geometry
 const material = new THREE.MeshPhongMaterial();
@@ -85,42 +97,6 @@ function properties(event) {
                 scene.add( geo );
             else
                 scene.remove( geo );
-        }
-
-        else if (event.keyCode == 119) // w +radius
-            geometry = new THREE.DodecahedronGeometry(++radius, detail )
-        else if (event.keyCode == 101) // e -radiusTop
-            geometry = new THREE.DodecahedronGeometry(--radius, detail )
-
-        else if (event.keyCode == 99) // c +detail
-            geometry = new THREE.DodecahedronGeometry(radius, ++detail )
-        else if (event.keyCode == 118) // v -detail
-            geometry = new THREE.DodecahedronGeometry(radius, --detail )
-
-    
-        geo.geometry = geometry;
-        
-        if (strip == 1){       // edges
-            tempx = line.rotation.x;
-            tempy = line.rotation.y;
-            scene.remove( line );
-
-            edges = new THREE.EdgesGeometry( geometry , nStrip);
-            line = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0xffffff } ) );
-            line.rotation.x = tempx;
-            line.rotation.y = tempy;
-            scene.add( line );
-        }
-        else if (strip == 2){   //wireframe
-            tempx = line.rotation.x;
-            tempy = line.rotation.y;
-            scene.remove( line );
-
-            wireframe = new THREE.WireframeGeometry( geometry );
-            line = new THREE.LineSegments( wireframe );
-            line.rotation.x = tempx;
-            line.rotation.y = tempy;
-            scene.add( line );
         }
     }
     

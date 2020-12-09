@@ -25,19 +25,46 @@ lights[ 3 ].position.set( -100, -100, 100 );
 scene.add( lights[ 0 ] );
 scene.add( lights[ 1 ] );
 scene.add( lights[ 2 ] );
-scene.add( lights[ 3 ] );
 
 // variabel
-var radius		= 3;
-var detail      = 3;
+var length          = 1;
+var width           = 1;
+var openEnded       = false;
 var freeze          = false;
 var visible         = true;
 var strip           = 0;
 var nStrip          = 1;
 var tempx, tempy;
 
+var steps = 1;
+var depth = 3;
+var bevelEnabled = false;
+var bevelThickness = 1;
+var bevelSize = 1;
+var bevelOffset = 1;
+var bevelSegments = 1;
+
+
+const shape = new THREE.Shape();
+shape.moveTo( 0,0 );
+shape.lineTo( 0, width );
+shape.lineTo( length, width );
+shape.lineTo( length, 0 );
+shape.lineTo( 0, 0 );
+
+const extrudeSettings = {
+	steps: steps,
+	depth: depth,
+	bevelEnabled: bevelEnabled,
+	bevelThickness: bevelThickness,
+	bevelSize: bevelSize,
+	bevelOffset: bevelOffset,
+	bevelSegments: bevelSegments
+};
+
+
 //Bentuk Geometry
-geometry = new THREE.DodecahedronGeometry(radius, detail);
+geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
 
 //Material geometry
 const material = new THREE.MeshPhongMaterial();
@@ -87,18 +114,46 @@ function properties(event) {
                 scene.remove( geo );
         }
 
-        else if (event.keyCode == 119) // w +radius
-            geometry = new THREE.DodecahedronGeometry(++radius, detail )
-        else if (event.keyCode == 101) // e -radiusTop
-            geometry = new THREE.DodecahedronGeometry(--radius, detail )
+        else if (event.keyCode == 120)     //x openended
+            extrudeSettings.bevelEnabled = !extrudeSettings.bevelEnabled;
 
-        else if (event.keyCode == 99) // c +detail
-            geometry = new THREE.DodecahedronGeometry(radius, ++detail )
-        else if (event.keyCode == 118) // v -detail
-            geometry = new THREE.DodecahedronGeometry(radius, --detail )
+        else if (event.keyCode == 119) // w +steps
+            extrudeSettings.steps++;
+        else if (event.keyCode == 101) // e -steps
+            extrudeSettings.steps--;
 
+
+        else if (event.keyCode == 114) // r +depth
+            extrudeSettings.depth++;
+        else if (event.keyCode == 116) // t -depth
+            extrudeSettings.depth--;
+
+        else if (event.keyCode == 121) // y +bevelThickness
+            extrudeSettings.bevelThickness++;
+        else if (event.keyCode == 117) // u -bevelThickness
+            extrudeSettings.bevelThickness--;
     
-        geo.geometry = geometry;
+
+        else if (event.keyCode == 105) // i +bevelSize
+            extrudeSettings.bevelSize++;
+        else if (event.keyCode == 111) // o -bevelSize
+            extrudeSettings.bevelSize--;
+    
+        else if (event.keyCode == 115) // s +bevelOffset
+            extrudeSettings.bevelOffset++;
+        else if (event.keyCode == 100) // d -bevelOffset;
+            extrudeSettings.bevelOffset--;
+    
+
+        else if (event.keyCode == 102) // f +bevelSegments
+            extrudeSettings.bevelSegments++;
+        else if (event.keyCode == 103) // g -bevelSegments
+            extrudeSettings.bevelSegments--;
+
+
+            geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
+            geo.geometry = geometry;
+
         
         if (strip == 1){       // edges
             tempx = line.rotation.x;
